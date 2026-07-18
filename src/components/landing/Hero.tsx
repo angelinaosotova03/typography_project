@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { FloatingBadge } from "@/components/ui/FloatingBadge";
-import { CardDeck } from "@/components/landing/CardDeck/CardDeck";
+import { HeroVisual } from "@/components/landing/HeroVisual";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -70,13 +70,8 @@ export function Hero() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 }}
-          className="relative mx-auto aspect-square w-full max-w-md"
-        >
-          <CardDeck />
+        <div className="relative mx-auto w-full max-w-md">
+          <HeroVisual />
 
           <FloatingBadge className="-left-4 top-4 hidden sm:block">
             <p className="font-mono text-2xl text-ink">24ч</p>
@@ -87,7 +82,7 @@ export function Hero() {
             <p className="font-mono text-2xl text-ink">500+</p>
             <p className="text-xs text-ink-soft">заказов в этом году</p>
           </FloatingBadge>
-        </motion.div>
+        </div>
       </Container>
 
       <TrustBar />

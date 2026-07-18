@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import handPen from "../../../public/images/hand-pen.jpg";
 
 const STEPS = [
   {
@@ -48,6 +50,17 @@ export function Process() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="rounded-2xl border border-paper/10 p-6"
             >
+              {i === 1 ? (
+                <div className="mb-4 h-14 w-14 overflow-hidden rounded-xl border border-paper/10 bg-paper">
+                  <Image
+                    src={handPen}
+                    alt="Разработка макета вручную"
+                    width={56}
+                    height={56}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ) : null}
               <p className="font-mono text-sm text-accent">{step.n}</p>
               <p className="mt-4 font-display text-xl">{step.title}</p>
               <p className="mt-2 text-sm text-paper/60">{step.text}</p>
