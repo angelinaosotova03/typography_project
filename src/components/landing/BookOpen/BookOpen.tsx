@@ -4,12 +4,13 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Container } from "@/components/ui/Container";
-import bookStackVintage from "../../../../public/images/book-stack-vintage.jpg";
+import bookStackVintage from "../../../../public/images/book-stack-vintage-cutout.png";
 
 /**
- * Books section: real photography with a restrained scroll-reveal
- * (fade + rise), replacing the earlier CSS "cover flip" + skeleton-line
- * mockup — see plan's "Дизайн-ревизия" section for why.
+ * Books section: real photography, background removed so it sits directly
+ * on the section's paper tone instead of inside a bordered panel, with a
+ * restrained scroll-reveal (fade + rise) — see plan's "Дизайн-ревизия"
+ * section for why this replaced the earlier CSS "cover flip" mockup.
  */
 export function BookOpen() {
   return (
@@ -20,14 +21,13 @@ export function BookOpen() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
-          className="relative mx-auto aspect-[1000/1051] w-full max-w-sm overflow-hidden rounded-3xl border border-ink/10 bg-paper shadow-[0_25px_60px_-20px_rgba(27,23,18,0.35)]"
+          className="relative mx-auto w-full max-w-xs sm:max-w-sm"
         >
           <Image
             src={bookStackVintage}
             alt="Стопка книг в переплёте — образец печати книг"
-            fill
-            sizes="(min-width: 1024px) 420px, 90vw"
-            className="object-cover"
+            sizes="(min-width: 1024px) 380px, 80vw"
+            className="h-auto w-full drop-shadow-[0_25px_35px_rgba(27,23,18,0.28)]"
           />
         </motion.div>
 
