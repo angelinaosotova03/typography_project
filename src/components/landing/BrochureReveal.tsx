@@ -43,7 +43,7 @@ export function BrochureReveal() {
             src={magazineStack}
             alt="Стопка журналов и брошюр — образец печати брошюр"
             sizes="(min-width: 1024px) 380px, 80vw"
-            className="h-auto w-full drop-shadow-[0_25px_35px_rgba(27,23,18,0.28)]"
+            className="h-auto w-full drop-shadow-[0_25px_35px_rgba(33,38,58,0.25)]"
           />
         </motion.div>
       </Container>

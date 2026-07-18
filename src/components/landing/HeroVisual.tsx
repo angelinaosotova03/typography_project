@@ -19,7 +19,7 @@ export function HeroVisual() {
       initial={prefersReducedMotion ? false : { opacity: 0, y: 18, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] as const, delay: 0.15 }}
-      className="relative overflow-hidden rounded-3xl border border-ink/10 bg-paper-dim p-3 shadow-[0_30px_70px_-30px_rgba(27,23,18,0.45)] sm:p-4"
+      className="relative overflow-hidden rounded-3xl border border-ink/10 bg-paper-dim p-3 shadow-[0_30px_70px_-30px_rgba(33,38,58,0.4)] sm:p-4"
     >
       <div className="relative aspect-[735/500] w-full overflow-hidden rounded-2xl">
         <Image
