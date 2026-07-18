@@ -1,18 +1,22 @@
 "use client";
 
+import Image, { type StaticImageData } from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import businessCardsMockup from "../../../public/images/business-cards-mockup.jpg";
+import bookStackVintage from "../../../public/images/book-stack-vintage.jpg";
+import magazineStack from "../../../public/images/magazine-stack.jpg";
+import handPen from "../../../public/images/hand-pen.jpg";
 
-// Placeholder tiles until real photos of finished print jobs are supplied —
-// see plan's "Контент/ассеты" section.
-const WORKS = [
-  { label: "Визитки · soft-touch", tone: "bg-ink" },
-  { label: "Брошюра · евробуклет", tone: "bg-accent" },
-  { label: "Книга · твёрдый переплёт", tone: "bg-paper-deep" },
-  { label: "Визитки · дизайнерская бумага", tone: "bg-paper-deep" },
-  { label: "Каталог · А4", tone: "bg-ink" },
-  { label: "Открытки · тиснение", tone: "bg-accent" },
+// Reference photography until real photos of finished client jobs are
+// supplied — see plan's "Контент/ассеты" section. Honest captions below,
+// no fabricated placeholder tiles (see plan's "Дизайн-ревизия" section).
+const WORKS: { label: string; image: StaticImageData }[] = [
+  { label: "Визитные карточки", image: businessCardsMockup },
+  { label: "Книги в переплёте", image: bookStackVintage },
+  { label: "Брошюры и журналы", image: magazineStack },
+  { label: "Индивидуальный макет", image: handPen },
 ];
 
 export function WorkGallery() {
@@ -22,26 +26,29 @@ export function WorkGallery() {
         <SectionHeading
           eyebrow="Наши работы"
           title="Немного из того, что мы напечатали"
-          description="Реальные примеры тиражей появятся здесь после фотосъёмки — сейчас это демонстрационная раскладка."
+          description="Референсные фото материалов и отделки — реальные примеры выполненных тиражей появятся здесь после фотосъёмки."
         />
 
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3">
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {WORKS.map((work, i) => (
             <motion.div
               key={work.label}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-              className={`flex aspect-[4/5] flex-col justify-end rounded-2xl p-4 ${work.tone}`}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="overflow-hidden rounded-2xl border border-ink/10 bg-paper-dim"
             >
-              <p
-                className={`text-sm ${
-                  work.tone === "bg-paper-deep" ? "text-ink" : "text-paper"
-                }`}
-              >
-                {work.label}
-              </p>
+              <div className="relative aspect-[4/5] w-full">
+                <Image
+                  src={work.image}
+                  alt={work.label}
+                  fill
+                  sizes="(min-width: 640px) 25vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+              <p className="px-3 py-2.5 text-sm text-ink">{work.label}</p>
             </motion.div>
           ))}
         </div>

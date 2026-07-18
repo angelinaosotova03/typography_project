@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --color-paper: #f6efe2;
-  --color-paper-dim: #ede2cd;
-  --color-paper-deep: #e3d4b8;
-  --color-ink: #1b1712;
-  --color-ink-soft: #5c5344;
-  --color-ink-faint: #8a8070;
-  --color-accent: #b3392c;
-  --color-accent-dark: #8a2b21;
-  --color-line: #ddcda9;
+  --color-paper: #ffffff;
+  --color-paper-dim: #e7e9f4;
+  --color-paper-deep: #d7dbf0;
+  --color-ink: #21263a;
+  --color-ink-soft: #5b6178;
+  --color-ink-faint: #9298ac;
+  --color-accent: #6f83b0;
+  --color-accent-dark: #55688f;
+  --color-line: #dde1f0;
 }
 
 @theme inline {
@@ -31,21 +31,6 @@ body {
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans), system-ui, sans-serif;
-}
-
-/* Subtle uncoated-paper grain, kept cheap: one tiled SVG noise layer */
-.paper-grain {
-  position: relative;
-}
-
-.paper-grain::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.5;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.02 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @media (prefers-reduced-motion: reduce) {

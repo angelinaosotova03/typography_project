@@ -1,30 +1,19 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Container } from "@/components/ui/Container";
-
-const panelVariants = {
-  folded: (i: number) => ({
-    rotateY: i === 0 ? 0 : i === 1 ? 140 : -140,
-    opacity: i === 0 ? 1 : 0.4,
-  }),
-  unfolded: {
-    rotateY: 0,
-    opacity: 1,
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
-
-const PANELS = [
-  { title: "Обложка", note: "мелованная бумага, УФ-лак" },
-  { title: "Разворот", note: "полноцветная печать 4+4" },
-  { title: "Задняя панель", note: "QR-код и контакты" },
-];
+import magazineStack from "../../../public/images/magazine-stack-cutout.png";
 
 /**
- * Tri-fold brochure "unfolding" section — a second, distinct scroll-triggered
- * flip in addition to BookOpen, per the plan's landing sections.
+ * Brochures section: real photography, background removed so it sits
+ * directly on the page instead of inside a bordered panel.
+ *
+ * NOTE: this specific source photo carries a faint "Dreamstime" stock
+ * watermark — kept as a temporary placeholder per an explicit call with
+ * the client; swap for a licensed/clean photo (or a real client job)
+ * before this goes fully public. See plan's "Дизайн-ревизия" section.
  */
 export function BrochureReveal() {
   return (
@@ -44,28 +33,18 @@ export function BrochureReveal() {
         />
 
         <motion.div
-          initial="folded"
-          whileInView="unfolded"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          className="order-1 mx-auto flex aspect-[3/2] w-full max-w-md items-stretch gap-1 lg:order-2"
-          style={{ perspective: 1400 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
+          className="order-1 relative mx-auto w-full max-w-xs sm:max-w-sm lg:order-2"
         >
-          {PANELS.map((panel, i) => (
-            <motion.div
-              key={panel.title}
-              custom={i}
-              variants={panelVariants}
-              style={{ transformOrigin: i === 2 ? "left center" : "right center" }}
-              className={`flex flex-1 flex-col justify-between rounded-lg p-4 shadow-[0_18px_40px_-18px_rgba(27,23,18,0.4)] ${
-                i === 1 ? "bg-accent text-paper" : "bg-ink text-paper"
-              }`}
-            >
-              <p className="font-mono text-[10px] uppercase tracking-widest opacity-60">
-                {panel.title}
-              </p>
-              <p className="text-xs opacity-80">{panel.note}</p>
-            </motion.div>
-          ))}
+          <Image
+            src={magazineStack}
+            alt="Стопка журналов и брошюр — образец печати брошюр"
+            sizes="(min-width: 1024px) 380px, 80vw"
+            className="h-auto w-full drop-shadow-[0_25px_35px_rgba(33,38,58,0.25)]"
+          />
         </motion.div>
       </Container>
     </section>
