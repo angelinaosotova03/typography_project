@@ -39,8 +39,8 @@ export function WorkGallery() {
           {WORKS.map((work, i) => (
             <motion.div
               key={work.label}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1, y: 16 }}
+              whileInView={{ y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.5, delay: (i % 4) * 0.08 }}
               className="overflow-hidden rounded-2xl border border-ink/10 bg-paper-dim"
@@ -50,6 +50,7 @@ export function WorkGallery() {
                   src={work.image}
                   alt={work.label}
                   fill
+                  loading="eager"
                   sizes="(min-width: 640px) 25vw, 50vw"
                   className="object-cover"
                 />

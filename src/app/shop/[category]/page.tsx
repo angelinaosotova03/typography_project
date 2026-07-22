@@ -45,7 +45,7 @@ export default async function CategoryPage({
         </div>
       </Container>
 
-      <Container className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <Container className="mt-14 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
           <Link
             key={product.slug}
@@ -58,6 +58,7 @@ export default async function CategoryPage({
                   src={product.image}
                   alt={product.title}
                   fill
+                  loading="eager"
                   sizes="(min-width: 1024px) 33vw, 50vw"
                   className="object-cover"
                 />

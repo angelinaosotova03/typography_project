@@ -14,9 +14,11 @@ const inputClasses =
 export function QuoteRequestForm({
   services,
   defaultService,
+  defaultQuantity,
 }: {
   services: { slug: string; title: string }[];
   defaultService?: string;
+  defaultQuantity?: string;
 }) {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
@@ -32,7 +34,7 @@ export function QuoteRequestForm({
       phone: "",
       email: "",
       service: defaultService ?? "",
-      quantity: "",
+      quantity: defaultQuantity ?? "",
       message: "",
       consent: false,
       company: "",

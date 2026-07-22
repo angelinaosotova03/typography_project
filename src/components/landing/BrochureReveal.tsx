@@ -29,8 +29,8 @@ export function BrochureReveal() {
         />
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 1, y: 24 }}
+          whileInView={{ y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
           className="order-1 relative mx-auto aspect-[730/550] w-full max-w-sm overflow-hidden rounded-3xl border border-ink/10 bg-paper-dim shadow-[0_25px_60px_-20px_rgba(33,38,58,0.3)] lg:order-2"
@@ -39,6 +39,7 @@ export function BrochureReveal() {
             src={brochuresSpbgpu}
             alt="Стопка отпечатанных брошюр, перевязанных лентами"
             fill
+            loading="eager"
             sizes="(min-width: 1024px) 420px, 90vw"
             className="object-cover"
           />

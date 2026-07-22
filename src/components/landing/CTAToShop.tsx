@@ -9,8 +9,8 @@ export function CTAToShop() {
     <section className="border-t border-ink/10 bg-paper-dim py-24 sm:py-32">
       <Container className="flex flex-col items-center gap-8 text-center">
         <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 1, y: 16 }}
+          whileInView={{ y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6 }}
           className="max-w-2xl font-display text-4xl leading-tight sm:text-5xl"

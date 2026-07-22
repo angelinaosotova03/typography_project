@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 export default async function ShopPage({
   searchParams,
 }: {
-  searchParams: Promise<{ service?: string }>;
+  searchParams: Promise<{ service?: string; qty?: string }>;
 }) {
-  const [categories, featured, allProducts, { service }] = await Promise.all([
+  const [categories, featured, allProducts, { service, qty }] = await Promise.all([
     getCategories(),
     getFeaturedProducts(),
     getProducts(),
@@ -52,12 +52,12 @@ export default async function ShopPage({
       {featured.length ? (
         <Container className="mt-20">
           <SectionHeading eyebrow="Популярное" title="Часто заказывают" />
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((product) => (
               <Link
                 key={`${product.categorySlug}-${product.slug}`}
                 href={`/shop/${product.categorySlug}/${product.slug}`}
-                className="overflow-hidden rounded-2xl border border-ink/10 transition-colors hover:border-accent/40"
+                className="overflow-hidden rounded-2xl border border-ink/10 bg-paper-dim transition-colors hover:border-accent/40"
               >
                 {product.image ? (
                   <div className="relative aspect-[4/3] w-full">
@@ -65,6 +65,7 @@ export default async function ShopPage({
                       src={product.image}
                       alt={product.title}
                       fill
+                      loading="eager"
                       sizes="(min-width: 1024px) 33vw, 50vw"
                       className="object-cover"
                     />
@@ -96,6 +97,7 @@ export default async function ShopPage({
           <QuoteRequestForm
             services={allProducts.map((p) => ({ slug: p.slug, title: p.title }))}
             defaultService={service}
+            defaultQuantity={qty ? `${qty} шт.` : undefined}
           />
         </div>
       </Container>

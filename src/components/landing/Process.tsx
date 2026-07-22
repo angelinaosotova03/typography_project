@@ -45,8 +45,8 @@ export function Process() {
           {STEPS.map((step, i) => (
             <motion.div
               key={step.n}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1, y: 20 }}
+              whileInView={{ y: 0 }}
               viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="rounded-2xl border border-paper/10 p-6"
@@ -57,6 +57,7 @@ export function Process() {
                   alt="Разработка макета вручную"
                   width={64}
                   height={96}
+                  loading="eager"
                   className="mb-3 h-16 w-auto drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]"
                 />
               ) : null}
@@ -65,6 +66,7 @@ export function Process() {
                   <Image
                     src={colorProofing}
                     alt="Сверка цвета по Pantone на печатной машине"
+                    loading="eager"
                     className="h-full w-full object-cover"
                   />
                 </div>

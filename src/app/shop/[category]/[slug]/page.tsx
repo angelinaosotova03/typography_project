@@ -3,7 +3,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
-import { ButtonLink } from "@/components/ui/Button";
+import { ProductGallery } from "@/components/shop/ProductGallery";
+import { OptionsPicker } from "@/components/shop/OptionsPicker";
+import { ProductCTASection } from "@/components/shop/ProductCTASection";
 import { getCategory, getProduct, getProducts } from "@/lib/catalog";
 
 export async function generateStaticParams() {
@@ -29,12 +31,15 @@ export default async function ProductPage({
   params: Promise<{ category: string; slug: string }>;
 }) {
   const { category: categorySlug, slug } = await params;
-  const [category, product] = await Promise.all([
+  const [category, product, categoryProducts] = await Promise.all([
     getCategory(categorySlug),
     getProduct(categorySlug, slug),
+    getProducts(categorySlug),
   ]);
 
   if (!category || !product) notFound();
+
+  const related = categoryProducts.filter((p) => p.slug !== slug).slice(0, 3);
 
   return (
     <div className="py-16 sm:py-20">
@@ -50,18 +55,10 @@ export default async function ProductPage({
           {product.title}
         </h1>
 
-        {product.image ? (
-          <div className="relative mt-8 aspect-[16/10] w-full overflow-hidden rounded-2xl border border-ink/10">
-            <Image
-              src={product.image}
-              alt={product.title}
-              fill
-              sizes="(min-width: 1024px) 720px, 90vw"
-              className="object-cover"
-              priority
-            />
-          </div>
-        ) : null}
+        <ProductGallery
+          images={product.image ? [product.image] : []}
+          alt={product.title}
+        />
 
         <p className="mt-4 text-lg text-ink-soft">{product.description}</p>
 
@@ -88,25 +85,54 @@ export default async function ProductPage({
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-faint">
             Варианты исполнения
           </p>
-          <dl className="mt-4 grid gap-4 sm:grid-cols-2">
-            {product.options.map((option) => (
-              <div key={option.label}>
-                <dt className="text-sm text-ink-soft">{option.label}</dt>
-                <dd className="text-sm text-ink">{option.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <OptionsPicker options={product.options} />
         </div>
 
-        <div className="mt-12">
-          <ButtonLink
-            href={`/shop?service=${encodeURIComponent(product.title)}#quote`}
-            size="lg"
-          >
-            Рассчитать стоимость →
-          </ButtonLink>
-        </div>
+        <ProductCTASection
+          productTitle={product.title}
+          minOrderQty={product.minOrderQty}
+        />
       </Container>
+
+      {related.length ? (
+        <Container className="mt-24">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-faint">
+            Похожие товары
+          </p>
+          <div className="mt-6 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((item) => (
+              <Link
+                key={item.slug}
+                href={`/shop/${categorySlug}/${item.slug}`}
+                className="overflow-hidden rounded-2xl border border-ink/10 bg-paper-dim transition-colors hover:border-accent/40"
+              >
+                {item.image ? (
+                  <div className="relative aspect-[4/3] w-full">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      loading="eager"
+                      sizes="(min-width: 1024px) 33vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : null}
+                <div className="p-6">
+                  <p className="font-display text-xl text-ink">{item.title}</p>
+                  <p className="mt-2 text-sm text-ink-soft">
+                    {item.shortDescription}
+                  </p>
+                  <p className="mt-4 font-mono text-sm text-ink">
+                    от {item.priceFrom.toLocaleString("ru-RU")} ₽{" "}
+                    <span className="text-ink-faint">{item.priceUnit}</span>
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </Container>
+      ) : null}
     </div>
   );
 }
