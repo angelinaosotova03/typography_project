@@ -36,6 +36,16 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/shop/kalendari" className="hover:text-paper">
+                Календари
+              </Link>
+            </li>
+            <li>
+              <Link href="/shop/upakovka" className="hover:text-paper">
+                Упаковка
+              </Link>
+            </li>
+            <li>
               <Link href="/shop" className="hover:text-paper">
                 Весь каталог
               </Link>
@@ -49,16 +59,26 @@ export function Footer() {
           </p>
           <ul className="mt-4 flex flex-col gap-2 text-sm text-paper/70">
             <li>
-              <a href="tel:+70000000000" className="hover:text-paper">
-                +7 (000) 000-00-00
+              <a href="tel:+79067980195" className="hover:text-paper">
+                +7 (906) 798-01-95
               </a>
             </li>
             <li>
-              <a href="mailto:hello@litera-print.ru" className="hover:text-paper">
-                hello@litera-print.ru
+              <a
+                href="https://t.me/galaprint_site"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-paper"
+              >
+                Telegram
               </a>
             </li>
-            <li>Москва, ул. Печатников, 1</li>
+            <li>
+              <a href="mailto:order.galaprint@gmail.com" className="hover:text-paper">
+                order.galaprint@gmail.com
+              </a>
+            </li>
+            <li>Москва, Малая Семёновская ул., 9с3</li>
             <li>
               <Link href="/privacy" className="hover:text-paper">
                 Политика конфиденциальности
@@ -71,7 +91,7 @@ export function Footer() {
       <div className="border-t border-paper/10 py-6">
         <Container className="flex flex-col gap-2 text-xs text-paper/50 sm:flex-row sm:justify-between">
           <p>© {new Date().getFullYear()} Литера. Все права защищены.</p>
-          <p>Контент и цены — демонстрационные, требуют наполнения.</p>
+          <p>Цены ориентировочные — точную стоимость пришлём после заявки.</p>
         </Container>
       </div>
     </footer>

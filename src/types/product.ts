@@ -21,4 +21,6 @@ export type Product = {
   minOrderQty: number;
   turnaroundTime: string;
   isFeatured?: boolean;
+  /** Path under /public, e.g. "/images/gp-brochures-spbgpu.jpg" */
+  image?: string;
 };

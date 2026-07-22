@@ -27,7 +27,7 @@ export function Hero() {
             variants={fadeUp}
             className="inline-block rounded-full border border-ink/15 bg-paper-dim px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-ink-soft"
           >
-            Типография полного цикла с 2015 года
+            Типография полного цикла с 2010 года
           </motion.span>
 
           <motion.h1
@@ -79,8 +79,8 @@ export function Hero() {
           </FloatingBadge>
 
           <FloatingBadge className="-right-2 bottom-10 hidden sm:block">
-            <p className="font-mono text-2xl text-ink">500+</p>
-            <p className="text-xs text-ink-soft">заказов в этом году</p>
+            <p className="font-mono text-2xl text-ink">13 479</p>
+            <p className="text-xs text-ink-soft">выполненных заказов</p>
           </FloatingBadge>
         </div>
       </Container>
@@ -98,10 +98,25 @@ const TRUSTED_BY = [
   "Издательство «Слово»",
 ];
 
+const STATS = [
+  { value: "16 лет", label: "на рынке полиграфии" },
+  { value: "50%", label: "клиентов работают с нами 15+ лет" },
+  { value: "от 10 000 ₽", label: "минимальная сумма заказа" },
+];
+
 function TrustBar() {
   return (
     <Container className="mt-20">
-      <p className="text-center font-mono text-xs uppercase tracking-[0.2em] text-ink-faint">
+      <div className="grid grid-cols-1 gap-8 border-y border-ink/10 py-8 sm:grid-cols-3">
+        {STATS.map((stat) => (
+          <div key={stat.label} className="text-center">
+            <p className="font-display text-3xl text-ink">{stat.value}</p>
+            <p className="mt-1 text-sm text-ink-soft">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-10 text-center font-mono text-xs uppercase tracking-[0.2em] text-ink-faint">
         Нам доверяют печать
       </p>
       <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">

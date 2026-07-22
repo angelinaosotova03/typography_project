@@ -4,16 +4,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Container } from "@/components/ui/Container";
-import magazineStack from "../../../public/images/magazine-stack-cutout.png";
+import brochuresSpbgpu from "../../../public/images/gp-brochures-spbgpu.jpg";
 
 /**
- * Brochures section: real photography, background removed so it sits
- * directly on the page instead of inside a bordered panel.
- *
- * NOTE: this specific source photo carries a faint "Dreamstime" stock
- * watermark — kept as a temporary placeholder per an explicit call with
- * the client; swap for a licensed/clean photo (or a real client job)
- * before this goes fully public. See plan's "Дизайн-ревизия" section.
+ * Brochures section: real photo from the shop's own portfolio (a stack of
+ * printed brochures tied with ribbon) — replaces an earlier watermarked
+ * stock placeholder. See plan's "Наполнение реальным контентом" section.
  */
 export function BrochureReveal() {
   return (
@@ -37,13 +33,14 @@ export function BrochureReveal() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
-          className="order-1 relative mx-auto w-full max-w-xs sm:max-w-sm lg:order-2"
+          className="order-1 relative mx-auto aspect-[730/550] w-full max-w-sm overflow-hidden rounded-3xl border border-ink/10 bg-paper-dim shadow-[0_25px_60px_-20px_rgba(33,38,58,0.3)] lg:order-2"
         >
           <Image
-            src={magazineStack}
-            alt="Стопка журналов и брошюр — образец печати брошюр"
-            sizes="(min-width: 1024px) 380px, 80vw"
-            className="h-auto w-full drop-shadow-[0_25px_35px_rgba(33,38,58,0.25)]"
+            src={brochuresSpbgpu}
+            alt="Стопка отпечатанных брошюр, перевязанных лентами"
+            fill
+            sizes="(min-width: 1024px) 420px, 90vw"
+            className="object-cover"
           />
         </motion.div>
       </Container>

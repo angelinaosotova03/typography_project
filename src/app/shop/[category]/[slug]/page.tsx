@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
@@ -48,6 +49,20 @@ export default async function ProductPage({
         <h1 className="mt-6 font-display text-4xl leading-tight text-ink sm:text-5xl">
           {product.title}
         </h1>
+
+        {product.image ? (
+          <div className="relative mt-8 aspect-[16/10] w-full overflow-hidden rounded-2xl border border-ink/10">
+            <Image
+              src={product.image}
+              alt={product.title}
+              fill
+              sizes="(min-width: 1024px) 720px, 90vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+        ) : null}
+
         <p className="mt-4 text-lg text-ink-soft">{product.description}</p>
 
         <div className="mt-8 flex flex-wrap items-center gap-6 rounded-2xl border border-ink/10 bg-paper-dim p-6">

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import handPen from "../../../public/images/hand-pen-cutout.png";
+import colorProofing from "../../../public/images/gp-color-proofing.jpg";
 
 const STEPS = [
   {
@@ -58,6 +59,15 @@ export function Process() {
                   height={96}
                   className="mb-3 h-16 w-auto drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]"
                 />
+              ) : null}
+              {i === 2 ? (
+                <div className="mb-3 h-16 w-16 overflow-hidden rounded-xl border border-paper/10">
+                  <Image
+                    src={colorProofing}
+                    alt="Сверка цвета по Pantone на печатной машине"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
               ) : null}
               <p className="font-mono text-sm text-accent">{step.n}</p>
               <p className="mt-4 font-display text-xl">{step.title}</p>

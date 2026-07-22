@@ -33,7 +33,18 @@ const CATEGORIES: Category[] = [
   {
     slug: "kalendari",
     title: "Календари",
-    description: "Настенные и настольные календари с корпоративным дизайном.",
+    description: "Настенные, настольные, квартальные и карманные календари с корпоративным дизайном.",
+  },
+  {
+    slug: "upakovka",
+    title: "Упаковка и подарочная продукция",
+    description:
+      "Пакеты, подарочные коробки и упаковка с индивидуальным дизайном для брендов и мероприятий.",
+  },
+  {
+    slug: "bloknoty",
+    title: "Блокноты и канцелярия",
+    description: "Блокноты, ежедневники и канцелярская продукция с фирменным дизайном.",
   },
 ];
 
@@ -119,11 +130,28 @@ const PRODUCTS: Product[] = [
     priceUnit: "за экземпляр (тираж 30+)",
     options: [
       { label: "Скрепление", value: "шитьё нитью" },
-      { label: "Обложка", value: "твёрдая, ламинация, тиснение" },
+      { label: "Обложка", value: "твёрдая №7БЦ, ламинация, тиснение" },
       { label: "Бумага блока", value: "офсет 100 г/м² / мелованная 130 г/м²" },
     ],
     minOrderQty: 30,
     turnaroundTime: "7–10 рабочих дней",
+  },
+  {
+    slug: "diplomy-i-sertifikaty",
+    categorySlug: "knigi",
+    title: "Дипломы и сертификаты",
+    shortDescription: "Твёрдые обложки для дипломов, сертификатов и наградных документов.",
+    description:
+      "Печать и переплёт дипломов, сертификатов и наградных папок — твёрдая обложка с тиснением герба или логотипа фольгой. Печатали тиражи для вузов и корпоративных наградных программ.",
+    priceFrom: 180,
+    priceUnit: "за экземпляр (тираж 100+)",
+    options: [
+      { label: "Обложка", value: "твёрдая, тиснение фольгой" },
+      { label: "Формат", value: "А4" },
+    ],
+    minOrderQty: 100,
+    turnaroundTime: "5–7 рабочих дней",
+    image: "/images/gp-diplomas-msu.jpg",
   },
   {
     slug: "evrobuklet",
@@ -157,6 +185,24 @@ const PRODUCTS: Product[] = [
     ],
     minOrderQty: 50,
     turnaroundTime: "4–5 рабочих дней",
+    image: "/images/gp-brochures-spbgpu.jpg",
+  },
+  {
+    slug: "reklamnye-broshyury",
+    categorySlug: "broshyury",
+    title: "Рекламные брошюры",
+    shortDescription: "Многостраничные рекламные брошюры для презентаций и промо-кампаний.",
+    description:
+      "Многостраничные рекламные брошюры для маркетинговых кампаний и презентаций продукции — печатали такие тиражи для фармацевтических и потребительских брендов.",
+    priceFrom: 250,
+    priceUnit: "за экземпляр (тираж 200+)",
+    options: [
+      { label: "Объём", value: "от 8 до 32 страниц" },
+      { label: "Скрепление", value: "на скобу" },
+    ],
+    minOrderQty: 200,
+    turnaroundTime: "4–6 рабочих дней",
+    image: "/images/gp-pharma-brochures.jpg",
   },
   {
     slug: "reklamnaya-listovka",
@@ -189,6 +235,106 @@ const PRODUCTS: Product[] = [
     ],
     minOrderQty: 50,
     turnaroundTime: "5–7 рабочих дней",
+  },
+  {
+    slug: "kvartalnyy-kalendar",
+    categorySlug: "kalendari",
+    title: "Квартальный календарь",
+    shortDescription: "Три календарных блока на одной подложке с рекламным полем.",
+    description:
+      "Классический офисный квартальный календарь — три блока на общей подложке с местом под логотип и рекламный слоган.",
+    priceFrom: 90,
+    priceUnit: "за экземпляр (тираж 100+)",
+    options: [
+      { label: "Подложка", value: "картон, пластик" },
+      { label: "Блоки", value: "стандартные, увеличенные" },
+    ],
+    minOrderQty: 100,
+    turnaroundTime: "5–7 рабочих дней",
+  },
+  {
+    slug: "nastolnyy-kalendar",
+    categorySlug: "kalendari",
+    title: "Настольный календарь-домик",
+    shortDescription: "Компактный настольный календарь на пружине или скобе.",
+    description:
+      "Настольный календарь-домик — удобный формат для рабочего стола, часто заказывают как подарок партнёрам и клиентам к Новому году.",
+    priceFrom: 150,
+    priceUnit: "за экземпляр (тираж 50+)",
+    options: [
+      { label: "Крепление", value: "пружина, скоба" },
+      { label: "Формат", value: "А5, А6" },
+    ],
+    minOrderQty: 50,
+    turnaroundTime: "5–7 рабочих дней",
+  },
+  {
+    slug: "karmannyy-kalendar",
+    categorySlug: "kalendari",
+    title: "Карманный календарь",
+    shortDescription: "Карманный календарь-визитка на весь год.",
+    description:
+      "Карманный календарь размером с визитку — недорогой сувенир с высоким тиражом, часто заказывают вместе с визитками.",
+    priceFrom: 25,
+    priceUnit: "за экземпляр (тираж 500+)",
+    options: [
+      { label: "Бумага", value: "мелованная 300 г/м²" },
+      { label: "Покрытие", value: "матовое, глянцевое" },
+    ],
+    minOrderQty: 500,
+    turnaroundTime: "3–5 рабочих дней",
+  },
+  {
+    slug: "podarochnyy-paket",
+    categorySlug: "upakovka",
+    title: "Подарочный пакет с индивидуальным дизайном",
+    shortDescription: "Плотная дизайнерская бумага, ленты-ручки, тиснение логотипа.",
+    description:
+      "Подарочные пакеты с индивидуальным дизайном под бренд или мероприятие — плотная бумага, тканевые ручки, тиснение фольгой. Печатали такие тиражи для медийных персон и известных брендов.",
+    priceFrom: 150,
+    priceUnit: "за экземпляр (тираж 100+)",
+    options: [
+      { label: "Бумага", value: "плотная дизайнерская, ламинация" },
+      { label: "Ручки", value: "лента, шнур, высечные" },
+      { label: "Отделка", value: "тиснение фольгой, конгрев" },
+    ],
+    minOrderQty: 100,
+    turnaroundTime: "7–10 рабочих дней",
+    isFeatured: true,
+    image: "/images/gp-gift-bag.jpg",
+  },
+  {
+    slug: "podarochnaya-korobka",
+    categorySlug: "upakovka",
+    title: "Подарочная коробка",
+    shortDescription: "Сборная коробка с логотипом под подарочные наборы.",
+    description:
+      "Сборные подарочные коробки под фирменные наборы и мерч — плотный картон, любые размеры, печать логотипа и тиснение.",
+    priceFrom: 200,
+    priceUnit: "за экземпляр (тираж 100+)",
+    options: [
+      { label: "Картон", value: "плотный мелованный, крафт" },
+      { label: "Отделка", value: "тиснение, УФ-лак" },
+    ],
+    minOrderQty: 100,
+    turnaroundTime: "7–10 рабочих дней",
+  },
+  {
+    slug: "kraftovyy-bloknot",
+    categorySlug: "bloknoty",
+    title: "Блокнот на пружине",
+    shortDescription: "Крафтовая или дизайнерская обложка, пружина, брендирование.",
+    description:
+      "Блокноты на пружине с крафтовой или дизайнерской обложкой — популярный подарок сотрудникам и клиентам с тиснением или печатью логотипа на обложке.",
+    priceFrom: 120,
+    priceUnit: "за экземпляр (тираж 100+)",
+    options: [
+      { label: "Обложка", value: "крафт-картон, дизайнерский картон" },
+      { label: "Крепление", value: "пружина" },
+    ],
+    minOrderQty: 100,
+    turnaroundTime: "5–7 рабочих дней",
+    image: "/images/gp-notebooks-kraft.jpg",
   },
 ];
 

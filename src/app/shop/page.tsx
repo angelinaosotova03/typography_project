@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -56,16 +57,29 @@ export default async function ShopPage({
               <Link
                 key={`${product.categorySlug}-${product.slug}`}
                 href={`/shop/${product.categorySlug}/${product.slug}`}
-                className="rounded-2xl border border-ink/10 p-6 transition-colors hover:border-accent/40"
+                className="overflow-hidden rounded-2xl border border-ink/10 transition-colors hover:border-accent/40"
               >
-                <p className="font-display text-xl text-ink">{product.title}</p>
-                <p className="mt-2 text-sm text-ink-soft">
-                  {product.shortDescription}
-                </p>
-                <p className="mt-4 font-mono text-sm text-ink">
-                  от {product.priceFrom.toLocaleString("ru-RU")} ₽{" "}
-                  <span className="text-ink-faint">{product.priceUnit}</span>
-                </p>
+                {product.image ? (
+                  <div className="relative aspect-[4/3] w-full">
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : null}
+                <div className="p-6">
+                  <p className="font-display text-xl text-ink">{product.title}</p>
+                  <p className="mt-2 text-sm text-ink-soft">
+                    {product.shortDescription}
+                  </p>
+                  <p className="mt-4 font-mono text-sm text-ink">
+                    от {product.priceFrom.toLocaleString("ru-RU")} ₽{" "}
+                    <span className="text-ink-faint">{product.priceUnit}</span>
+                  </p>
+                </div>
               </Link>
             ))}
           </div>
@@ -76,7 +90,7 @@ export default async function ShopPage({
         <SectionHeading
           eyebrow="Заявка"
           title="Рассчитаем стоимость вашего тиража"
-          description="Заполните форму — пришлём расчёт и цифровой макет на согласование в течение рабочего дня."
+          description="Заполните форму — пришлём расчёт и цифровой макет на согласование в течение рабочего дня. Минимальная сумма заказа — 10 000 ₽."
         />
         <div className="mt-8 max-w-2xl">
           <QuoteRequestForm

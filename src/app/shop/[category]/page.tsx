@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
@@ -49,16 +50,29 @@ export default async function CategoryPage({
           <Link
             key={product.slug}
             href={`/shop/${slug}/${product.slug}`}
-            className="flex flex-col rounded-2xl border border-ink/10 bg-paper-dim p-6 transition-colors hover:border-accent/40"
+            className="flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-paper-dim transition-colors hover:border-accent/40"
           >
-            <p className="font-display text-xl text-ink">{product.title}</p>
-            <p className="mt-2 flex-1 text-sm text-ink-soft">
-              {product.shortDescription}
-            </p>
-            <p className="mt-4 font-mono text-sm text-ink">
-              от {product.priceFrom.toLocaleString("ru-RU")} ₽{" "}
-              <span className="text-ink-faint">{product.priceUnit}</span>
-            </p>
+            {product.image ? (
+              <div className="relative aspect-[4/3] w-full">
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            ) : null}
+            <div className="flex flex-1 flex-col p-6">
+              <p className="font-display text-xl text-ink">{product.title}</p>
+              <p className="mt-2 flex-1 text-sm text-ink-soft">
+                {product.shortDescription}
+              </p>
+              <p className="mt-4 font-mono text-sm text-ink">
+                от {product.priceFrom.toLocaleString("ru-RU")} ₽{" "}
+                <span className="text-ink-faint">{product.priceUnit}</span>
+              </p>
+            </div>
           </Link>
         ))}
         {products.length === 0 ? (
